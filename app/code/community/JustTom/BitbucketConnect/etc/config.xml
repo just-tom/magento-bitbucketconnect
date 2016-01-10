@@ -33,4 +33,15 @@
             </justtom_bitbucketconnect_setup>
         </resources>
     </global>
+    <frontend>
+        <routers>
+            <bitbucket>
+                <use>standard</use>
+                <args>
+                    <module>JustTom_BitbucketConnect</module>
+                    <frontName>bitbucket</frontName>
+                </args>
+            </bitbucket>
+        </routers>
+    </frontend>
 </config>

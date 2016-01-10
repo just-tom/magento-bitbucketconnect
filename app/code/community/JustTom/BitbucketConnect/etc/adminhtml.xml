@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <justtom_bitbucketconnect translate="title" module="justtom_bitbucketconnect">
+                                        <title>Just Tom - Bitbucket Connect</title>
+                                    </justtom_bitbucketconnect>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <justtom>
+            <label>Just Tom</label>
+            <sort_order>500</sort_order>
+        </justtom>
+    </tabs>
+    <sections>
+        <justtom_bitbucketconnect>
+            <tab>justtom</tab>
+            <label>Bitbucket Connect</label>
+            <sort_order>10</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>0</show_in_website>
+            <show_in_store>0</show_in_store>
+            <groups>
+                <global>
+                    <label>Global</label>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <consumer_key translation="label,comment">
+                            <label>Consumer Key</label>
+                            <comment>Consumer key given by bitbucket</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </consumer_key>
+                        <consumer_secret translation="label,comment">
+                            <label>Consumer Key</label>
+                            <comment>Consumer secret given by bitbucket</comment>
+                            <frontend_type>obscure</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </consumer_secret>
+                        <redirect_uri translation="label,comment">
+                            <label>Redirect URI</label>
+                            <comment>Redirect URI for API (Should be the same as provided in Bitbucket)</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </redirect_uri>
+                    </fields>
+                </global>
+            </groups>
+        </justtom_bitbucketconnect>
+    </sections>
+</config>
