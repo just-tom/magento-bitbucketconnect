@@ -10,8 +10,8 @@
     }
   ],
   "require": {
-    "league/oauth2-client": "1.1.0",
     "stevenmaguire/oauth2-bitbucket": "0.1.1",
-    "magento-hackathon/magento-composer-installer": "2.1.1"
+    "magento-hackathon/magento-composer-installer": "2.1.1",
+    "ajbonner/magento-composer-autoload": "0.1.1"
   }
 }
