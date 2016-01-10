@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <JustTom_BitbucketConnect>
+            <version>1.0.0</version>
+        </JustTom_BitbucketConnect>
+    </modules>
+    <global>
+        <models>
+            <justtom_bitbucketconnect>
+                <class>JustTom_BitbucketConnect_Model</class>
+                <resourceModel>justtom_bitbucketconnect_resource</resourceModel>
+            </justtom_bitbucketconnect>
+            <justtom_bitbucketconnect_resource>
+                <class>JustTom_BitbucketConnect_Model_Resource</class>
+            </justtom_bitbucketconnect_resource>
+        </models>
+        <blocks>
+            <justtom_bitbucketconnect>
+                <class>JustTom_BitbucketConnect_Block</class>
+            </justtom_bitbucketconnect>
+        </blocks>
+        <helpers>
+            <justtom_bitbucketconnect>
+                <class>JustTom_BitbucketConnect_Helper</class>
+            </justtom_bitbucketconnect>
+        </helpers>
+        <resources>
+            <justtom_bitbucketconnect_setup>
+                <setup>
+                    <module>JustTom_BitbucketConnect</module>
+                </setup>
+            </justtom_bitbucketconnect_setup>
+        </resources>
+    </global>
+</config>

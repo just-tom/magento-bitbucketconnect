@@ -1,0 +1,7 @@
+# JustTom - Oauth2
+
+# Module Code
+app/code/community/JustTom/BitbucketConnect    app/code/community/JustTom/BitbucketConnect
+
+# Module Initializer
+app/etc/modules/JustTom_BitbucketConnect.xml   app/etc/modules/JustTom_BitbucketConnect.xml

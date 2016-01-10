@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <JustTom_BitbucketConnect>
+            <active>true</active>
+            <codePool>community</codePool>
+        </JustTom_BitbucketConnect>
+    </modules>
+</config>

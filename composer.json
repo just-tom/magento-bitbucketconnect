@@ -1,0 +1,17 @@
+{
+  "name": "justtom/magento-bitbucketconnect",
+  "type": "magento-module",
+  "description": "Add BitBucket Oauth2 support to magento",
+  "homepage": "https://github.com/just-tom/magento-bitbucketconnect",
+  "authors":[
+    {
+      "name":"Tom Burman",
+      "email":"cranbriwebsolutions@gmail.com"
+    }
+  ],
+  "require": {
+    "league/oauth2-client": "1.1.0",
+    "stevenmaguire/oauth2-bitbucket": "0.1.1",
+    "magento-hackathon/magento-composer-installer": "2.1.1"
+  }
+}
