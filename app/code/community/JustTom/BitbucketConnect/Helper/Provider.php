@@ -20,9 +20,9 @@ class JustTom_BitbucketConnect_Helper_Provider
                 'clientId' => Mage::getStoreConfig(
                     self::XPATH_CONFIG_CLIENT_ID
                 ),
-                'clientSecret' => Mage::getStoreConfig(
+                'clientSecret' => Mage::helper('core')->decrypt(Mage::getStoreConfig(
                     self::XPATH_CONFIG_CLIENT_PASSWORD
-                ),
+                )),
                 'redirectUri' => Mage::getStoreConfig(
                     self::XPATH_CONFIG_REDIRECT_URI
                 ),

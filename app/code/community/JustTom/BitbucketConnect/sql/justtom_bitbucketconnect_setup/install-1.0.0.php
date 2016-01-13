@@ -32,10 +32,6 @@ $tokensTable = $installer->getConnection()
     ->addColumn('scope', Varien_Db_Ddl_Table::TYPE_TEXT, 255, array(
         'nullable' => true
     ),'Toke Access Scope')
-    ->addForeignKey($installer->getFkName('justtom_bitbucketconnect/tokens', 'customer_id', 'customer/entity', 'entity_id'),
-        'customer_id', $installer->getTable('customer/entity'), 'entity_id',
-        Varien_Db_Ddl_Table::ACTION_CASCADE, Varien_Db_Ddl_Table::ACTION_CASCADE
-    )
     ->setComment('Bitbucket oAuth Token Table');
 
 $installer->getConnection()->createTable($tokensTable);
