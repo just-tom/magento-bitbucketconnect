@@ -13,6 +13,11 @@
             </justtom_bitbucketconnect>
             <justtom_bitbucketconnect_resource>
                 <class>JustTom_BitbucketConnect_Model_Resource</class>
+                <entities>
+                    <tokens>
+                        <table>justtom_bitbucketconnect_tokens</table>
+                    </tokens>
+                </entities>
             </justtom_bitbucketconnect_resource>
         </models>
         <blocks>
