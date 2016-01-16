@@ -31,10 +31,11 @@ class JustTom_BitbucketConnect_Model_Tokens extends Mage_Core_Model_Abstract
     /**
      * @param $customerId
      * @param $accessToken
+     * @param $username
      *
      * @throws Exception
      */
-    public function saveAccessToken($customerId, $accessToken)
+    public function saveAccessToken($customerId, $accessToken, $username)
     {
         $entity = $this->load($customerId, 'customer_id');
         if ($entity->getEntityId()) {
@@ -47,6 +48,7 @@ class JustTom_BitbucketConnect_Model_Tokens extends Mage_Core_Model_Abstract
             $this->setAccessToken($accessToken->getToken());
             $this->setRefreshToken($accessToken->getRefreshToken());
             $this->setExpiresAt($accessToken->getExpires());
+            $this->setUsername($username);
             $this->save();
         }
     }
@@ -72,7 +74,11 @@ class JustTom_BitbucketConnect_Model_Tokens extends Mage_Core_Model_Abstract
             );
 
             if ($accessToken) {
-                $this->saveAccessToken($customerId, $accessToken);
+                $resourceOwner = $provider->getResourceOwner($accessToken)
+                    ->toArray();
+                $this->saveAccessToken(
+                    $customerId, $accessToken, $resourceOwner['username']
+                );
 
                 return true;
             }
@@ -85,20 +91,24 @@ class JustTom_BitbucketConnect_Model_Tokens extends Mage_Core_Model_Abstract
 
     public function getAccessTokenWithRefresh()
     {
+        $customerId = $customerId = $this->_getCurrentCustomerId();
         $currentAccessDetails = Mage::getModel(
             'justtom_bitbucketconnect/tokens'
         )
-            ->load($this->_getCurrentCustomerId(), 'customer_id');
+            ->load($customerId, 'customer_id');
 
         if ($currentAccessDetails->hasExpired()) {
-            $newAccessToken = $this->_getBitbucketProvider()->getAccessToken(
+            $provider = $this->_getBitbucketProvider();
+            $newAccessToken = $provider->getAccessToken(
                 'refresh_token', [
                     'refresh_token' => $currentAccessDetails->getRefreshToken(),
                 ]
             );
             if ($newAccessToken) {
+                $resourceOwner = $provider->getResourceOwner($newAccessToken)
+                    ->toArray();
                 $this->saveAccessToken(
-                    $this->_getCurrentCustomerId(), $newAccessToken
+                    $customerId, $newAccessToken, $resourceOwner['username']
                 );
 
                 return $newAccessToken;
@@ -117,5 +127,13 @@ class JustTom_BitbucketConnect_Model_Tokens extends Mage_Core_Model_Abstract
         }
 
         return $expires < time();
+    }
+
+    public function disconnectUser($id)
+    {
+        $entity = $this->load($id);
+        if($entity->getEntityId()){
+            $this->delete();
+        }
     }
 }

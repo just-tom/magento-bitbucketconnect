@@ -67,11 +67,29 @@ class JustTom_BitbucketConnect_AccessController
                 Mage::throwException('Could not get access token');
             }
 
-            $this->_redirect('customer/account');
+            $this->_redirect('modulemarket/bitbucket_account/index');
         } catch (Mage_Core_Exception $e) {
             Mage::getSingleton('core/session')->addError(
                 'Sorry something appears to have gone wrong'
             );
+        }
+    }
+
+    public function disconnectAction()
+    {
+        $id = $this->getRequest()->getParam('id');
+        if (!$id) {
+            Mage::getModel('customer/session')->addError(
+                'unable to find account'
+            );
+        }
+        try {
+            Mage::getModel('justtom_bitbucketconnect/tokens')->disconnectUser(
+                $id
+            );
+            $this->_redirect('modulemarket/bitbucket_account/index');
+        } catch (\Exception $e) {
+            Mage::getModel('customer/session')->addError($e->getMessage());
         }
     }
 }

@@ -73,6 +73,24 @@
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
                         </redirect_uri>
+                        <v1_api_base_url>
+                            <label>V1 API Base URL</label>
+                            <comment>Bitbucket's V1 API Base URL</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </v1_api_base_url>
+                        <v2_api_base_url>
+                            <label>V2 API Base URL</label>
+                            <comment>Bitbucket's V2 API Base URL</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </v2_api_base_url>
                     </fields>
                 </global>
             </groups>

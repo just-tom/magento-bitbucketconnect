@@ -27,6 +27,8 @@ class JustTom_BitbucketConnect_Helper_Provider
     const XPATH_CONFIG_CLIENT_ID = 'justtom_bitbucketconnect/global/client_id';
     const XPATH_CONFIG_CLIENT_PASSWORD = 'justtom_bitbucketconnect/global/client_password';
     const XPATH_CONFIG_REDIRECT_URI = 'justtom_bitbucketconnect/global/redirect_uri';
+    const XPATH_CONFIG_API_V1 = 'justtom_bitbucketconnect/global/v1_api_base_url';
+    const XPATH_CONFIG_API_V2 = 'justtom_bitbucketconnect/global/v2_api_base_url';
 
     public function getProvider()
     {
@@ -45,5 +47,18 @@ class JustTom_BitbucketConnect_Helper_Provider
                 ),
             )
         );
+    }
+
+    /**
+     * @param $apiType
+     *
+     * @return mixed
+     */
+    public function getApiType($apiType)
+    {
+        if($apiType == 2){
+            return Mage::getStoreConfig(self::XPATH_CONFIG_API_V2);
+        }
+        return Mage::getStoreConfig(self::XPATH_CONFIG_API_V1);
     }
 }

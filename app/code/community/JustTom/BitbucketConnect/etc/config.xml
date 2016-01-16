@@ -25,7 +25,7 @@
 <config>
     <modules>
         <JustTom_BitbucketConnect>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
         </JustTom_BitbucketConnect>
     </modules>
     <global>
@@ -40,6 +40,9 @@
                     <tokens>
                         <table>justtom_bitbucketconnect_tokens</table>
                     </tokens>
+                    <repositories>
+                        <table>justtom_bitbucketconnect_repositories</table>
+                    </repositories>
                 </entities>
             </justtom_bitbucketconnect_resource>
         </models>
@@ -72,4 +75,12 @@
             </bitbucket>
         </routers>
     </frontend>
+    <default>
+        <justtom_bitbucketconnect>
+            <global>
+                <v1_api_base_url><![CDATA[https://api.bitbucket.org/1.0]]></v1_api_base_url>
+                <v2_api_base_url><![CDATA[https://api.bitbucket.org/2.0]]></v2_api_base_url>
+            </global>
+        </justtom_bitbucketconnect>
+    </default>
 </config>
