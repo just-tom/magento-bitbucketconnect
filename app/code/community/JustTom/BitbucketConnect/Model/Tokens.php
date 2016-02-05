@@ -89,7 +89,7 @@ class JustTom_BitbucketConnect_Model_Tokens extends Mage_Core_Model_Abstract
         return false;
     }
 
-    public function getAccessTokenWithRefresh()
+    public function getAccessTokenWithRefresh($force = false)
     {
         $customerId = $customerId = $this->_getCurrentCustomerId();
         $currentAccessDetails = Mage::getModel(
@@ -97,7 +97,7 @@ class JustTom_BitbucketConnect_Model_Tokens extends Mage_Core_Model_Abstract
         )
             ->load($customerId, 'customer_id');
 
-        if ($currentAccessDetails->hasExpired()) {
+        if ($currentAccessDetails->hasExpired() || $force) {
             $provider = $this->_getBitbucketProvider();
             $newAccessToken = $provider->getAccessToken(
                 'refresh_token', [
@@ -132,8 +132,6 @@ class JustTom_BitbucketConnect_Model_Tokens extends Mage_Core_Model_Abstract
     public function disconnectUser($id)
     {
         $entity = $this->load($id);
-        if($entity->getEntityId()){
-            $this->delete();
-        }
+        $entity->delete();
     }
 }

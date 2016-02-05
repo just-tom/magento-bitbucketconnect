@@ -13,6 +13,9 @@ class JustTom_BitbucketConnect_Model_Api_User
             'GET', self::BITBUCKET_VERSION, self::USER_URI.$username
         );
 
-        return $this->sendRequest($request);
+        if($response = $this->sendRequest($request)){
+            return $response;
+        }
+        return false;
     }
 }
