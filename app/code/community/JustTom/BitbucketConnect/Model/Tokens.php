@@ -92,10 +92,7 @@ class JustTom_BitbucketConnect_Model_Tokens extends Mage_Core_Model_Abstract
     public function getAccessTokenWithRefresh($force = false)
     {
         $customerId = $customerId = $this->_getCurrentCustomerId();
-        $currentAccessDetails = Mage::getModel(
-            'justtom_bitbucketconnect/tokens'
-        )
-            ->load($customerId, 'customer_id');
+        $currentAccessDetails = $this->load($customerId, 'customer_id');
 
         if ($currentAccessDetails->hasExpired() || $force) {
             $provider = $this->_getBitbucketProvider();
@@ -133,5 +130,16 @@ class JustTom_BitbucketConnect_Model_Tokens extends Mage_Core_Model_Abstract
     {
         $entity = $this->load($id);
         $entity->delete();
+    }
+
+    public function testConnection()
+    {
+        $customerId = $customerId = $this->_getCurrentCustomerId();
+        $currentAccessDetails = $this->load($customerId, 'customer_id');
+        $provider = $this->_getBitbucketProvider();
+        if(!$resourceOwner = $provider->getResourceOwner($currentAccessDetails->getData('access_token'))){
+            throw new \Exception ('User Revoked');
+        }
+        return true;
     }
 }

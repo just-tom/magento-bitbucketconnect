@@ -25,7 +25,7 @@
 <config>
     <modules>
         <JustTom_BitbucketConnect>
-            <version>1.0.1</version>
+            <version>1.0.2</version>
         </JustTom_BitbucketConnect>
     </modules>
     <global>
@@ -40,9 +40,6 @@
                     <tokens>
                         <table>justtom_bitbucketconnect_tokens</table>
                     </tokens>
-                    <repositories>
-                        <table>justtom_bitbucketconnect_repositories</table>
-                    </repositories>
                 </entities>
             </justtom_bitbucketconnect_resource>
         </models>
