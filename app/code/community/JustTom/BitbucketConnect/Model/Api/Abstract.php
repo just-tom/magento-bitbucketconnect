@@ -89,7 +89,7 @@ class JustTom_BitbucketConnect_Model_Api_Abstract
     protected function _iteratePages($response)
     {
         $this->_pagedResults = array_merge($this->_pagedResults, $response['values']);
-        if($response['next'] != null){
+        if(array_key_exists('next', $response) && $response['next'] != null){
             $nextRequest = $this->createRequestWithoutBuild('GET',$response['next']);
             $response = $this->sendRequest($nextRequest);
             $this->_iteratePages($response);
