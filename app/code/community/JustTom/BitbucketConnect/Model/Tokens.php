@@ -89,10 +89,15 @@ class JustTom_BitbucketConnect_Model_Tokens extends Mage_Core_Model_Abstract
         return false;
     }
 
-    public function getAccessTokenWithRefresh($force = false)
+    public function getAccessTokenWithRefresh($force = false, $customer = false)
     {
-        $customerId = $customerId = $this->_getCurrentCustomerId();
-        $currentAccessDetails = $this->load($customerId, 'customer_id');
+        $currentAccessDetails = $customer;
+        if($currentAccessDetails){
+            $customerId = $currentAccessDetails->getCustomerId();
+        } else {
+            $customerId = $customerId = $this->_getCurrentCustomerId();
+            $currentAccessDetails = $this->load($customerId, 'customer_id');
+        }
 
         if ($currentAccessDetails->hasExpired() || $force) {
             $provider = $this->_getBitbucketProvider();

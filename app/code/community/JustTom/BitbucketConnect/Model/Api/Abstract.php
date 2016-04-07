@@ -8,32 +8,47 @@ class JustTom_BitbucketConnect_Model_Api_Abstract
     const ERROR_UNAUTHORIZED = 'UNAUTHORIZED';
 
     protected $_pagedResults = array();
+    protected $_request;
+    protected $_method;
+    protected $_url;
+    protected $_body;
 
-    public function createRequest($method, $api, $uri)
+    public function createRequest($method, $api, $uri, $token = false, $body = array())
     {
+        $this->_method = $method;
+        $this->_url = $this->_buildUri($api, $uri);
+        $this->_token = ($token->getId()) ? $token->getData('access_token') : $this->_getCustomerAccessToken();
+        $this->_body = $body;
         return $this->_getBitbucketProvider()->getAuthenticatedRequest(
-            $method,
-            $this->_buildUri($api, $uri),
-            $this->_getCustomerAccessToken()
+            $this->_method,
+            $this->_url,
+            $this->_token,
+            $this->_body
         );
     }
 
-    public function createRequestWithoutBuild($method, $uri)
+    public function createRequestWithoutBuild($method, $uri, $token = false, $body = array())
     {
+        $this->_method = $method;
+        $this->_url = $uri;
+        $this->_token = ($token->getId()) ? $token->getData('access_token') : $this->_getCustomerAccessToken();
+        $this->_body = $body;
         return $this->_getBitbucketProvider()->getAuthenticatedRequest(
-            $method,
-            $uri,
-            $this->_getCustomerAccessToken()
+            $this->_method,
+            $this->_url,
+            $this->_token,
+            $this->_body
         );
     }
 
-    public function sendRequest($request)
+    public function sendRequest($request, $currentToken = false)
     {
         try {
+            $this->_request = $request;
             return $this->_getBitbucketProvider()->getResponse($request);
         } catch (IdentityProviderException $e) {
             Mage::log($e->getMessage(), null, 'bitbucketconnect.log');
-            $this->_handleException($e);
+            return $this->_handleException($e, $currentToken);
         }
     }
 
@@ -66,13 +81,20 @@ class JustTom_BitbucketConnect_Model_Api_Abstract
         return $baseUrl.$uri;
     }
 
-    protected function _handleException($exception)
+    protected function _handleException($exception, $currentToken)
     {
         switch ($exception->getResponseBody()->getReasonPhrase()) {
             case self::ERROR_UNAUTHORIZED: {
                 try{
-                    Mage::getModel('justtom_bitbucketconnect/tokens')
-                        ->getAccessTokenWithRefresh(true);
+                    $token = Mage::getModel('justtom_bitbucketconnect/tokens')
+                        ->getAccessTokenWithRefresh(true, $currentToken);
+                    $request = $this->_getBitbucketProvider()->getAuthenticatedRequest(
+                        $this->_method,
+                        $this->_url,
+                        $token->getData('access_token'),
+                        $this->_body
+                    );
+                    return $this->sendRequest($request);
                 } catch (Exception $e) {
                     Mage::log($e->getMessage(), null, 'bitbucketconnect.log');
                     Mage::getModel('justtom_bitbucketconnect/tokens')

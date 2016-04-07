@@ -12,12 +12,14 @@ class JustTom_BitbucketConnect_Model_Api_Repositories
             'GET', self::BITBUCKET_VERSION, self::REPOSITORIES_URI.$username
         );
 
-        if($response = $this->sendRequest($request)){
-            if(array_key_exists('next', $response)){
+        if ($response = $this->sendRequest($request)) {
+            if (array_key_exists('next', $response)) {
                 return $this->_iteratePages($response);
             }
+
             return $response;
         }
+
         return false;
     }
 }
