@@ -12,12 +12,6 @@
   "require": {
     "stevenmaguire/oauth2-bitbucket": "0.1.1",
     "magento-hackathon/magento-composer-installer": "2.1.1",
-    "firegento/psr0autoloader": "*"
-  },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/magento-hackathon/Magento-PSR-0-Autoloader.git"
-    }
-  ]
+    "firegento/psr0autoloader": "dev-master"
+  }
 }
