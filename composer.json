@@ -12,6 +12,6 @@
   "require": {
     "stevenmaguire/oauth2-bitbucket": "0.1.1",
     "magento-hackathon/magento-composer-installer": "2.1.1",
-    "ajbonner/magento-composer-autoload": "0.1.1"
+    "firegento/psr0autoloader": "*"
   }
 }
