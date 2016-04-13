@@ -9,7 +9,7 @@ class JustTom_BitbucketConnect_Model_Api_Repositories
     public function getAllRepositories($username)
     {
         $request = $this->createRequest(
-            'GET', self::BITBUCKET_VERSION, self::REPOSITORIES_URI.$username
+            'GET', self::BITBUCKET_VERSION, self::REPOSITORIES_URI . $username
         );
 
         if ($response = $this->sendRequest($request)) {
@@ -20,6 +20,16 @@ class JustTom_BitbucketConnect_Model_Api_Repositories
             return $response;
         }
 
+        return false;
+    }
+
+    public function getRepositoryTags($url)
+    {
+        $request = $this->createRequestWithoutBuild('get', $url);
+
+        if($response = $this->sendRequest($request)){
+            return $response['values'];
+        }
         return false;
     }
 }

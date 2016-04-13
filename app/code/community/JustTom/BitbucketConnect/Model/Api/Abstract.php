@@ -17,7 +17,7 @@ class JustTom_BitbucketConnect_Model_Api_Abstract
     {
         $this->_method = $method;
         $this->_url = $this->_buildUri($api, $uri);
-        $this->_token = ($token->getId()) ? $token->getData('access_token') : $this->_getCustomerAccessToken();
+        $this->_token = ($token != false) ? $token->getData('access_token') : $this->_getCustomerAccessToken();
         $this->_body = $body;
         return $this->_getBitbucketProvider()->getAuthenticatedRequest(
             $this->_method,
@@ -31,7 +31,7 @@ class JustTom_BitbucketConnect_Model_Api_Abstract
     {
         $this->_method = $method;
         $this->_url = $uri;
-        $this->_token = ($token->getId()) ? $token->getData('access_token') : $this->_getCustomerAccessToken();
+        $this->_token = ($token != false) ? $token->getData('access_token') : $this->_getCustomerAccessToken();
         $this->_body = $body;
         return $this->_getBitbucketProvider()->getAuthenticatedRequest(
             $this->_method,

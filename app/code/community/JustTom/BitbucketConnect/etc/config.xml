@@ -60,6 +60,16 @@
                 </setup>
             </justtom_bitbucketconnect_setup>
         </resources>
+        <events>
+            <resource_get_tablename>
+                <observers>
+                    <justtom_bitbucketconnect_autoload>
+                        <class>justtom_bitbucketconnect/observer</class>
+                        <method>addAutoloader</method>
+                    </justtom_bitbucketconnect_autoload>
+                </observers>
+            </resource_get_tablename>
+        </events>
     </global>
     <frontend>
         <routers>
